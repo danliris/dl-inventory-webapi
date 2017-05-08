@@ -42,5 +42,5 @@ before("initialize server", function(done) {
 describe('@dl-inventory-webapi', function() {
     this.timeout(2 * 60000); 
     //Production
-    test("/v1/inventory/inventory-document", "./routes/inventory-document/inventory-document");
+    test("/v1/inventory/inventory-document", "./routes/inventory/inventory-document");
     });

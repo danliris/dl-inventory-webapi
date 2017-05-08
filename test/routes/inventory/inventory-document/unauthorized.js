@@ -1,5 +1,5 @@
  var unauthorizedTest = require("../../unauthorized-test-factory");
  unauthorizedTest({
-     uri: "/inventory/inventory-document"
+     uri: "/inventory/inventory-documents"
  });
  

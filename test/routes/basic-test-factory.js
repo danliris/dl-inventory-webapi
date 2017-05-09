@@ -284,7 +284,7 @@ function getBasicTest(opt) {
             });
     });
 
-    it(`#14. get list of accounts with keyword - [GET] ${uri}?keyword`, function(done) {
+    it(`#13. get list of accounts with keyword - [GET] ${uri}?keyword`, function(done) {
         request
             .get(`${uri}?keyword=${createdData[keyword]}`)
             .set("authorization", `JWT ${jwt}`)

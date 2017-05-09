@@ -317,5 +317,4 @@ function getBasicTest(opt) {
     });
 }
 
-
 module.exports = getBasicTest;

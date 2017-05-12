@@ -1,7 +1,7 @@
 {
-  "name": "dl-core-webapi",
+  "name": "dl-inventory-webapi",
   "version": "1.0.0",
-  "description": "Dan Liris inventory RESTful api",
+  "description": "Dan Liris inventory function RESTful api",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/index.js",
@@ -20,11 +20,13 @@
   "bugs": {
     "url": "https://github.com/danliris/dl-inventory-webapi/issues"
   },
-"homepage": "https://github.com/danliris/dl-inventory-webapi#readme",
+  "homepage": "https://github.com/danliris/dl-inventory-webapi#readme",
   "dependencies": {
     "assert": "^1.4.1",
     "dl-module": "git+https://github.com/danliris/dl-module.git#dev",
     "json2xls": "^0.1.2",
+    "module-toolkit": "git+https://github.com/pinkgorilla/module-toolkit.git",
+    "moment": "^2.16.0",
     "mongo-factory": "^1.0.0",
     "mongodb": "^2.2.5",
     "passport": "^0.3.2",

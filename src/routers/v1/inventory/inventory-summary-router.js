@@ -49,15 +49,10 @@ function getRouter() {
                 return Promise.resolve(result);
             })
             .then((result) => {
-                if ((request.headers.accept || '').toString().indexOf("application/xls") < 0) {
-                    response.send(result.statusCode, result);
-                }
-                else{
-                    tManager.getXls(result)
-                        .then(xls => {
-                            response.xls(xls.name, xls.data, xls.options);
-                        });
-                }
+                tManager.getXls(result)
+                    .then(xls => {
+                        response.xls(xls.name, xls.data, xls.options);
+                    });
             })
             .catch((e) => {
                 var statusCode = 500;

@@ -32,10 +32,6 @@ function getRouter() {
         var user = request.user;
         var query = request.query;
         var tManager;
-        var info = {
-            dateFrom : query.dateFrom,
-            dateTo : query.dateTo
-        };
 
         query.filter = Object.assign({}, query.filter, typeof defaultFilter === "function" ? defaultFilter(request, response, next) : defaultFilter, query.filter);
         query.order = Object.assign({}, query.order, typeof defaultOrder === "function" ? defaultOrder(request, response, next) : defaultOrder, query.order);
@@ -44,7 +40,8 @@ function getRouter() {
         getManager(user)
             .then((manager) => {
                 tManager = manager;
-                return tManager.getMovementReport(info);
+                query.xls = true;
+                return tManager.getMovementReport(query);
             })
             .then(docs => {
                 var result = resultFormatter.ok(apiVersion, 200, docs.data);
@@ -53,12 +50,10 @@ function getRouter() {
                 return Promise.resolve(result);
             })
             .then((result) => {
-                
-                    tManager.getXls(result)
-                        .then(xls => {
-                            response.xls(xls.name, xls.data, xls.options);
-                        });
-                
+                tManager.getXls(result)
+                    .then(xls => {
+                        response.xls(xls.name, xls.data, xls.options);
+                    });
             })
             .catch((e) => {
                 var statusCode = 500;
@@ -72,10 +67,6 @@ function getRouter() {
     router.get("/get/search", passport, function(request, response, next) {
         var user = request.user;
         var query = request.query;
-        var info = {
-            dateFrom : query.dateFrom,
-            dateTo : query.dateTo
-        };
 
         query.filter = Object.assign({}, query.filter, typeof defaultFilter === "function" ? defaultFilter(request, response, next) : defaultFilter, query.filter);
         query.order = Object.assign({}, query.order, typeof defaultOrder === "function" ? defaultOrder(request, response, next) : defaultOrder, query.order);
@@ -83,7 +74,7 @@ function getRouter() {
 
         getManager(user)
             .then((manager) => {
-                return manager.getMovementReport(info);
+                return manager.getMovementReport(query);
             })
             .then(docs => {
                 var result = resultFormatter.ok(apiVersion, 200, docs.data);

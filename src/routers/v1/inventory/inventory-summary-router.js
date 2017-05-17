@@ -40,7 +40,7 @@ function getRouter() {
         getManager(user)
             .then((manager) => {
                 tManager = manager;
-                return tManager.read(query);
+                return tManager.readXlsData(query);
             })
             .then(docs => {
                 var result = resultFormatter.ok(apiVersion, 200, docs.data);

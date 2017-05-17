@@ -50,7 +50,7 @@ function getRouter() {
                 return Promise.resolve(result);
             })
             .then((result) => {
-                tManager.getXls(result)
+                tManager.getXls(result, query)
                     .then(xls => {
                         response.xls(xls.name, xls.data, xls.options);
                     });

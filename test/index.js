@@ -43,4 +43,6 @@ describe('@dl-inventory-webapi', function() {
     this.timeout(2 * 60000); 
     //Production
     test("/v1/inventory/inventory-document", "./routes/inventory/inventory-document");
+    test("/v1/inventory/inventory-summary", "./routes/inventory/inventory-summary");
+    test("/v1/inventory/inventory-movement", "./routes/inventory/inventory-movement");
     });

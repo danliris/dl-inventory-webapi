@@ -1,11 +1,11 @@
 function test(name, path) {
-    describe(name, function() {
+    describe(name, function () {
         require(path);
     });
 }
 
 
-before("initialize server", function(done) {
+before("initialize server", function (done) {
     var server = require("../server");
     server()
         .then((server) => {
@@ -39,10 +39,12 @@ before("initialize server", function(done) {
 });
 
 
-describe('@dl-inventory-webapi', function() {
-    this.timeout(2 * 60000); 
-    //Production
+describe('@dl-inventory-webapi', function () {
+    this.timeout(2 * 60000);
+
+    //Inventory
     test("/v1/inventory/inventory-document", "./routes/inventory/inventory-document");
     test("/v1/inventory/inventory-summary", "./routes/inventory/inventory-summary");
     test("/v1/inventory/inventory-movement", "./routes/inventory/inventory-movement");
-    });
+    test("/v1/inventory/fp-shipment-document", "./routes/inventory/finishing-printing/fp-shipment-document");
+});

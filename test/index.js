@@ -47,4 +47,11 @@ describe('@dl-inventory-webapi', function () {
     test("/v1/inventory/inventory-summary", "./routes/inventory/inventory-summary");
     test("/v1/inventory/inventory-movement", "./routes/inventory/inventory-movement");
     test("/v1/inventory/fp-shipment-document", "./routes/inventory/finishing-printing/fp-shipment-document");
+
+    //Master
+    test("/v1/master/buyer", "./routes/master/buyer"); 
+    test("/v1/master/product", "./routes/master/product"); 
+    
+    //Sales
+    test("/v1/sales/production-order", "./routes/sales/production-order");
 });

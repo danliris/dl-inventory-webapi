@@ -19,7 +19,7 @@ var handlePdfRequest = function (request, response, next) {
                 .then((fpShipmentDocumentBinary) => {
                     response.writeHead(200, {
                         "Content-Type": "application/pdf",
-                        "Content-Disposition": `attachment; filename = ${filename}.pdf`,
+                        "Content-Disposition": `attachment; filename=${filename}.pdf`,
                         "Content-Length": fpShipmentDocumentBinary.length
                     });
                     response.end(fpShipmentDocumentBinary);

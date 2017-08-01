@@ -12,6 +12,11 @@ var v1ProductRouter = require("../src/routers/v1/master/product-router");
 //REPORTS
 var v1FPShipmentDocumentReportRouter = require("../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-report-router")
 
+//RETUR to QC
+var v1fpReturToQCDocRouter = require('../src/routers/v1/inventory/fp-retur-to-qc-doc-router');
+var v1productByProductionOrderRouter = require('../src/routers/v1/inventory/product-by-production-order-router');
+
+
 module.exports = function(server) {
       //INVENTORY
       v1InventoryDocumentRouter().applyRoutes(server,                         "/v1/inventory/inventory-documents");
@@ -26,4 +31,8 @@ module.exports = function(server) {
 
       //REPORTS
       v1FPShipmentDocumentReportRouter().applyRoutes(server,                  "/v1/inventory/reports/fp-shipment-document");
+
+      //RETUR to QC
+      v1fpReturToQCDocRouter().applyRoutes(server,                            "/v1/inventory/fp-retur-to-qc-docs");
+      v1productByProductionOrderRouter().applyRoutes(server,                  "/v1/inventory/products-by-production-orders");
 };

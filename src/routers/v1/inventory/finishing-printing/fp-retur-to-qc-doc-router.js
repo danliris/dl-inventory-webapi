@@ -1,7 +1,7 @@
 var Manager = require("dl-module").managers.inventory.finishingPrinting.FPReturToQCDocManager;
-var JwtRouterFactory = require("../../jwt-router-factory");
-var resultFormatter = require("../../../result-formatter");
-var db = require("../../../db");
+var JwtRouterFactory = require("../../../jwt-router-factory");
+var resultFormatter = require("../../../../result-formatter");
+var db = require("../../../../db");
 const apiVersion = '1.0.0';
 
 

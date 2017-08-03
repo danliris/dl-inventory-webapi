@@ -1,8 +1,8 @@
 var Router = require('restify-router').Router;
-var db = require("../../../db");
+var db = require("../../../../db");
 var ProductManager = require("dl-module").managers.inventory.finishingPrinting.FPReturToQCDocManager;;
-var resultFormatter = require("../../../result-formatter");
-var passport = require('../../../passports/jwt-passport');
+var resultFormatter = require("../../../../result-formatter");
+var passport = require('../../../../passports/jwt-passport');
 const apiVersion = '1.0.0';
 
 function getRouter() {

@@ -16,6 +16,11 @@ var productRouter = require('../src/routers/v1/master/product-router');
 //REPORTS
 var fpShipmentDocumentReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-report-router');
 var fpReturToQCDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-to-qc-doc-report-router');
+var fpReturFromBuyerDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-fr-byr-doc-report-router');
+
+//RETUR From BUYER
+var fpReturFromBuyer = require("../src/routers/v1/inventory/finishing-printing/fp-retur-fr-byr-doc-router")
+var productShipmentByOrderNo = require("../src/routers/v1/inventory/finishing-printing/product-shipment-by-production-order-router")
 
 module.exports = function(server) {
       //INVENTORY
@@ -31,9 +36,14 @@ module.exports = function(server) {
 
       //REPORTS
       fpShipmentDocumentReportRouter().applyRoutes(server,              "/inventory/report/fp-shipment-document");  
-      fpReturToQCDocReportRouter().applyRoutes(server,                  "/inventory/report/fp-retur-to-qc-docs");  
+      fpReturToQCDocReportRouter().applyRoutes(server,                  "/inventory/report/fp-retur-to-qc-docs");
+      fpReturFromBuyerDocReportRouter().applyRoutes(server,             "/inventory/report/fp-retur-from-buyer-docs");  
 
       //RETUR To QC
       fpReturToQCDocRouter().applyRoutes(server,                       "/inventory/fp-retur-to-qc-docs");
-      productByProductionOrderRouter().applyRoutes(server,             "/inventory/products-by-production-orders");    
+      productByProductionOrderRouter().applyRoutes(server,             "/inventory/products-by-production-orders");
+
+      //RETUR From BUYER
+      fpReturFromBuyer().applyRoutes(server,                            "/inventory/fp-retur-fr-byr-docs");
+      productShipmentByOrderNo().applyRoutes(server,                    "/inventory/product-shipment-by-production-order"); 
 };

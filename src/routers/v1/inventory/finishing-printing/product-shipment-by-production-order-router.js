@@ -11,7 +11,7 @@ function getRouter() {
         db.get().then(db => {
                 var manager = new Manager(db, request.user);
                 var query = request.query;
-                manager.getProductShipmentByPO([query.orderNo])
+                manager.getProductShipmentByPO([query.orderNo], query.buyer)
                     .then(docs => {
                         var result = resultFormatter.ok(apiVersion, 200, docs);
                         response.send(200, result);

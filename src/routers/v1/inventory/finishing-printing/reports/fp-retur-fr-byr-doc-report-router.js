@@ -30,9 +30,19 @@ function getRouter() {
         getManager(user)
             .then((manager) => {
                 returManager = manager;
-                var isExcel = false
+                var isExcel = true
                 if ((request.headers.accept || '').toString().indexOf("application/xls") < 0)
-                    isExcel = true;
+                    isExcel = false;
+                else{
+                    query.filter = {
+                        dateTo : query.dateTo ? query.dateTo : "",
+                        dateFrom : query.dateFrom ? query.dateFrom : "",
+                        destination : query.destination ? query.destination : "",
+                        code : query.retur ? query.retur : "",
+                        buyer : query.buyer ? query.buyer : "",
+                        productionOrderNo : query.productionOrder ? query.productionOrder : ""
+                    }
+                }
                 return returManager.getReportMonitoring(query, isExcel);
             })
             .then((docs) => {

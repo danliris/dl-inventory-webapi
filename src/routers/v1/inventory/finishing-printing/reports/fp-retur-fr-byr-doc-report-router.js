@@ -38,9 +38,9 @@ function getRouter() {
                         dateTo : query.dateTo ? query.dateTo : "",
                         dateFrom : query.dateFrom ? query.dateFrom : "",
                         destination : query.destination ? query.destination : "",
-                        code : query.retur ? query.retur : "",
+                        code : query.code ? query.code : "",
                         buyer : query.buyer ? query.buyer : "",
-                        productionOrderNo : query.productionOrder ? query.productionOrder : ""
+                        productionOrderNo : query.productionOrderNo ? query.productionOrderNo : ""
                     }
                 }
                 return returManager.getReportMonitoring(query, isExcel);

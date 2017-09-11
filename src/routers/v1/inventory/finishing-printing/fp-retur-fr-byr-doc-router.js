@@ -17,9 +17,10 @@ var handlePdfRequest = function (request, response, next) {
         .then((fpRetur) => {
             manager.pdf(fpRetur._id, request.timezoneOffset)
                 .then((fpReturDocBinary) => {
+                    var code = fpRetur.code;
                     response.writeHead(200, {
                         "Content-Type": "application/pdf",
-                        "Content-Disposition": `attachment; filename = ${fpRetur.code}.pdf`,
+                        "Content-Disposition": `attachment; filename =${code}.pdf`,
                         "Content-Length": fpReturDocBinary.length
                     });
                     response.end(fpReturDocBinary);

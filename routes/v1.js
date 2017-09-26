@@ -10,7 +10,17 @@ var v1ProductionOrderRouter = require("../src/routers/v1/sales/production-order-
 var v1ProductRouter = require("../src/routers/v1/master/product-router");
 
 //REPORTS
-var v1FPShipmentDocumentReportRouter = require("../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-report-router")
+var v1FPShipmentDocumentReportRouter = require("../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-report-router");
+var v1FPReturToQCDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-to-qc-doc-report-router');
+var v1FPReturFromBuyerDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-fr-byr-doc-report-router');
+
+//RETUR to QC
+var v1fpReturToQCDocRouter = require('../src/routers/v1/inventory/finishing-printing/fp-retur-to-qc-doc-router');
+var v1productByProductionOrderRouter = require('../src/routers/v1/inventory/finishing-printing/product-by-production-order-router');
+
+//RETUR From BUYER
+var v1FpReturFromBuyer = require("../src/routers/v1/inventory/finishing-printing/fp-retur-fr-byr-doc-router")
+var v1ProductShipmentByOrderNo = require("../src/routers/v1/inventory/finishing-printing/product-shipment-by-production-order-router")
 
 module.exports = function(server) {
       //INVENTORY
@@ -26,4 +36,14 @@ module.exports = function(server) {
 
       //REPORTS
       v1FPShipmentDocumentReportRouter().applyRoutes(server,                  "/v1/inventory/reports/fp-shipment-document");
+      v1FPReturToQCDocReportRouter().applyRoutes(server,                      "/v1/inventory/reports/fp-retur-to-qc-docs");
+      v1FPReturFromBuyerDocReportRouter().applyRoutes(server,                 "/v1/inventory/reports/fp-retur-from-buyer-docs");
+
+      //RETUR to QC
+      v1fpReturToQCDocRouter().applyRoutes(server,                            "/v1/inventory/fp-retur-to-qc-docs");
+      v1productByProductionOrderRouter().applyRoutes(server,                  "/v1/inventory/products-by-production-orders");
+      
+      //RETUR From BUYER
+      v1FpReturFromBuyer().applyRoutes(server,                                "/v1/inventory/fp-retur-fr-byr-docs");
+      v1ProductShipmentByOrderNo().applyRoutes(server,                        "/v1/inventory/product-shipment-by-production-order"); 
 };

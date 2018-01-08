@@ -24,13 +24,14 @@ function getRouter() {
     router.get("/", passport, function (request, response, next) {
         var user = request.user;
         var query = request.query;
+        var timezone = request.timezoneOffset * 60 * 60000;
         query.order = Object.assign({}, defaultOrder, query.order);
 
         var manager = {};
         getManager(user)
             .then((manager) => {
                 shipmentDocumentManager = manager;
-                return shipmentDocumentManager.getReportShipmentBuyer(query);
+                return shipmentDocumentManager.getReportShipmentBuyer(query,timezone);
             })
             .then((docs) => {
                 var result = resultFormatter.ok(apiVersion, 200, docs.data);

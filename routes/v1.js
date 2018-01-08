@@ -13,6 +13,7 @@ var v1ProductRouter = require("../src/routers/v1/master/product-router");
 var v1FPShipmentDocumentReportRouter = require("../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-report-router");
 var v1FPReturToQCDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-to-qc-doc-report-router');
 var v1FPReturFromBuyerDocReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-retur-fr-byr-doc-report-router');
+var fpShipmentDeliveryBuyerReportRouter = require('../src/routers/v1/inventory/finishing-printing/reports/fp-shipment-document-buyer-delivery-report-router');
 
 //RETUR to QC
 var v1fpReturToQCDocRouter = require('../src/routers/v1/inventory/finishing-printing/fp-retur-to-qc-doc-router');
@@ -38,6 +39,7 @@ module.exports = function(server) {
       v1FPShipmentDocumentReportRouter().applyRoutes(server,                  "/v1/inventory/reports/fp-shipment-document");
       v1FPReturToQCDocReportRouter().applyRoutes(server,                      "/v1/inventory/reports/fp-retur-to-qc-docs");
       v1FPReturFromBuyerDocReportRouter().applyRoutes(server,                 "/v1/inventory/reports/fp-retur-from-buyer-docs");
+      fpShipmentDeliveryBuyerReportRouter().applyRoutes(server,               "/v1/inventory/reports/fp-shipment-document-buyer-delivery-report-router")
 
       //RETUR to QC
       v1fpReturToQCDocRouter().applyRoutes(server,                            "/v1/inventory/fp-retur-to-qc-docs");

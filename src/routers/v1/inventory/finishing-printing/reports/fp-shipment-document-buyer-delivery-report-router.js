@@ -25,13 +25,14 @@ function getRouter() {
         var user = request.user;
         var query = request.query;
         var timezone = request.timezoneOffset * 60 * 60000;
+        query.timezone=timezone
         query.order = Object.assign({}, defaultOrder, query.order);
 
         var manager = {};
         getManager(user)
             .then((manager) => {
                 shipmentDocumentManager = manager;
-                return shipmentDocumentManager.getReportShipmentBuyer(query,timezone);
+                return shipmentDocumentManager.getReportShipmentBuyer(query);
             })
             .then((docs) => {
                 var result = resultFormatter.ok(apiVersion, 200, docs.data);

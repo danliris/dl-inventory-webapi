@@ -37,7 +37,8 @@ function getRouter() {
         query.filter = Object.assign({}, query.filter, typeof defaultFilter === "function" ? defaultFilter(request, response, next) : defaultFilter, query.filter);
         query.order = Object.assign({}, query.order, typeof defaultOrder === "function" ? defaultOrder(request, response, next) : defaultOrder, query.order);
         query.select = query.select ? query.select : typeof defaultSelect === "function" ? defaultSelect(request, response, next) : defaultSelect;
-
+        query.offset = request.timezoneOffset;
+        
         getManager(user)
             .then((manager) => {
                 rManager = manager;

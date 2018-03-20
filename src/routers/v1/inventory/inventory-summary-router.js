@@ -28,7 +28,7 @@ function getRouter() {
             });
     };
 
-    router.get("/get/summary", passport, function(request, response, next) {
+    router.get("/get/summary", passport, function (request, response, next) {
         var user = request.user;
         var query = request.query;
         var rManager;
@@ -59,6 +59,34 @@ function getRouter() {
                             response.xls(xls.name, xls.data, xls.options);
                         });
                 }
+            })
+            .catch((e) => {
+                var statusCode = 500;
+                if (e.name === "ValidationError")
+                    statusCode = 400;
+                var error = resultFormatter.fail(apiVersion, statusCode, e);
+                response.send(statusCode, error);
+            });
+    });
+
+    router.get("/get/all-summary", passport, function (request, response, next) {
+        var user = request.user;
+        var query = request.query;
+        var rManager;
+
+        query.filter = Object.assign({}, query.filter, typeof defaultFilter === "function" ? defaultFilter(request, response, next) : defaultFilter, query.filter);
+
+        getManager(user)
+            .then((manager) => {
+                rManager = manager;
+                return rManager.collection.find(query.filter).toArray();
+            })
+            .then(docs => {
+                var result = resultFormatter.ok(apiVersion, 200, docs);
+                return Promise.resolve(result);
+            })
+            .then((result) => {
+                response.send(result.statusCode, result);
             })
             .catch((e) => {
                 var statusCode = 500;

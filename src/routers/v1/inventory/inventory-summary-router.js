@@ -97,6 +97,31 @@ function getRouter() {
             });
     });
 
+    router.put("/update/all-summary", passport, function (request, response, next) {
+        var user = request.user;
+        var rManager;
+
+        getManager(user)
+            .then((manager) => {
+                rManager = manager;
+                return rManager.UpdateInventorySummary(request.body)
+            })
+            .then(docs => {
+                var result = resultFormatter.ok(apiVersion, 200, docs);
+                return Promise.resolve(result);
+            })
+            .then((result) => {
+                response.send(result.statusCode, result);
+            })
+            .catch((e) => {
+                var statusCode = 500;
+                if (e.name === "ValidationError")
+                    statusCode = 400;
+                var error = resultFormatter.fail(apiVersion, statusCode, e);
+                response.send(statusCode, error);
+            });
+    });
+
     return router;
 }
 
